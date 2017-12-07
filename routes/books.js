@@ -50,7 +50,7 @@ router.delete('/books/:id', (req,res,next)=>{
   return knex('books')
   .where('id', req.params.id)
   .del()
-  .first(['title', 'author','genre', 'cover_url AS coverUrl', 'created_at AS createdAt', 'description'])
+  .returning(['title', 'author','genre', 'cover_url AS coverUrl', 'created_at AS createdAt', 'description'])
   .then((data)=> res.status(200).send(data))
 })
 
